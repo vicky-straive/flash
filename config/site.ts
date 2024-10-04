@@ -1,4 +1,6 @@
 export type SiteConfig = typeof siteConfig;
+import Link from 'next/link';
+
 
 export const siteConfig = {
   name: "Next.js + NextUI",
@@ -14,10 +16,10 @@ export const siteConfig = {
     // },
   ],
   navMenuItems: [
-    // {
-    //   label: "Profile",
-    //   href: "/profile",
-    // },
+    {
+      label: "Reservation",
+      to: "/reservation",
+    },
     // {
     //   label: "Dashboard",
     //   href: "/dashboard",
@@ -38,10 +40,10 @@ export const siteConfig = {
       label: "Settings",
       href: "/settings",
     },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
+    // {
+    //   label: "Help & Feedback",
+    //   href: "/help-feedback",
+    // },
     {
       label: "Logout",
       href: "/logout",

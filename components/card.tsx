@@ -4,7 +4,9 @@ import cardData from "../app/data.json";
 import Modal from "./modal";
 
 import { useRecoilValue, useSetRecoilState, atom } from "recoil";
-import { selectedCardState, isModalOpenState } from "../recoil/atoms";
+import { selectedCardState, isModalOpenState, isCustomModalOpenState } from "../recoil/atoms";
+
+import CustomModal from "./customModal";
 
 interface Place {
   id: string;
@@ -21,8 +23,10 @@ export default function App() {
   const setSelectedCard = useSetRecoilState(selectedCardState);
   const selectedCard = useRecoilValue(selectedCardState);
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
+  const customModalOpen = useRecoilValue(isCustomModalOpenState);
 
-  console.log("selectedCard", selectedCard);
+
+  console.log("customModalOpen", customModalOpen);
 
   const handleCardSelect = (place: Place) => {
     setSelectedCard(place);
@@ -117,6 +121,7 @@ export default function App() {
         </Card>
       ))}
       <Modal />
+      {customModalOpen && <CustomModal />}
     </>
   );
 }

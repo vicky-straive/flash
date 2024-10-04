@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useRecoilState,
   useRecoilValue,
@@ -6,6 +6,7 @@ import {
   useSetRecoilState,
 } from "recoil";
 import {
+  isCustomModalOpenState,
   isModalOpenState,
   selectedCardState,
   selectedDateTimeState,
@@ -17,12 +18,14 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  Image, // Import the Image component from the correct package
+  Image,
 } from "@nextui-org/react";
-import { format } from "date-fns";
 
 import { DatePicker } from "@nextui-org/react";
 import { now, getLocalTimeZone } from "@internationalized/date";
+
+import { db } from "../firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
 
 interface Card {
   name: string;
@@ -31,19 +34,48 @@ interface Card {
   imageUrl: string;
 }
 
+const saveDataToFirebase = async (data: any) => {
+  try {
+    const docRef = await addDoc(collection(db, "bookings"), data);
+    console.log("Document successfully written with ID:", docRef.id);
+    return docRef.id;
+  } catch (error) {
+    console.error("Error adding document to Firestore:", error);
+    throw error;
+  }
+};
+
 export default function App() {
   const [isOpen, setIsOpen] = useRecoilState(isModalOpenState);
+  const setCustomModalOpen = useSetRecoilState(isCustomModalOpenState);
   const selectedCard = useRecoilValue<Card | null>(selectedCardState);
   const setSelectedDateTime = useSetRecoilState(selectedDateTimeState);
   const selectedDateTime = useRecoilValue(selectedDateTimeState);
   const [date, setDate] = useState(now(getLocalTimeZone()));
+  const [isValidDate, setIsValidDate] = useState(false);
 
+  useEffect(() => {
+    const checkDateValidity = () => {
+      if (!date) {
+        setIsValidDate(false);
+        return;
+      }
+      const currentDate = now(getLocalTimeZone());
+      setIsValidDate(date.compare(currentDate) > 0);
+    };
+
+    checkDateValidity();
+    const intervalId = setInterval(checkDateValidity, 1000); // Check every second
+
+    return () => clearInterval(intervalId);
+  }, [date]);
+  
   const onClose = () => setIsOpen(false);
   const formatDate = (date: Date) => {
     const pad = (num: number) => num.toString().padStart(2, "0");
     const hours = date.getHours();
     const ampm = hours >= 12 ? "PM" : "AM";
-    const formattedHours = hours % 12 || 12; // Convert to 12-hour format
+    const formattedHours = hours % 12 || 12;
 
     return `${pad(date.getDate())}-${pad(date.getMonth() + 1)}-${date.getFullYear()} & ${pad(formattedHours)}:${pad(date.getMinutes())}:${pad(date.getSeconds())} ${ampm}`;
   };
@@ -51,40 +83,34 @@ export default function App() {
   const handleAction = async () => {
     if (!selectedCard || !date) {
       console.error("Selected card or date is missing");
-      return;
+      return false;
     }
-  
+
     const formattedDate = formatDate(date.toDate());
     setSelectedDateTime(formattedDate);
-  
+
     try {
-      const response = await fetch("/api/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          selectedCard,
-          selectedDateTime: formattedDate,
-        }),
-      });
-  
-      if (response.ok) {
-        console.log("Email sent successfully");
-      } else {
-        console.error("Failed to send email");
-      }
+      const data = {
+        cardName: selectedCard.name,
+        cardType: selectedCard.type,
+        cardLocation: selectedCard.location,
+        selectedDateTime: formattedDate,
+      };
+
+      const docId = await saveDataToFirebase(data);
+      // console.log("Data saved successfully with ID:", docId);
+      setCustomModalOpen(true);
+      onClose();
+      return true;
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error processing action:", error);
+      onClose();
+      return false;
     }
-  
-    onClose();
   };
-  
 
-  console.log("selectedDateTime", selectedDateTime);
+  // console.log("selectedDateTime", selectedDateTime);
 
-  // Define the 'place' variable
   const place = {
     name: "Place Name",
     imageUrl: "https://example.com/image.jpg",
@@ -107,15 +133,13 @@ export default function App() {
                   height={"auto"}
                 />
               </div>
-              {/* <p>{selectedCard?.location}</p> */}
-              {/* Add more details as needed */}
               <div className="w-full max-w-xl flex flex-row gap-4">
                 <DatePicker
-                  label="Pick Date"
+                  label="Pick a date"
                   variant="bordered"
                   hideTimeZone
                   showMonthAndYearPickers
-                  onChange={(selected) => setDate(selected)} // This will update the date state
+                  onChange={(selected) => setDate(selected)}
                   defaultValue={now(getLocalTimeZone())}
                 />
               </div>
@@ -124,8 +148,12 @@ export default function App() {
               <Button color="danger" variant="light" onPress={onClose}>
                 Close
               </Button>
-              <Button color="primary" onPress={handleAction}>
-                Action
+              <Button 
+                color="primary" 
+                onPress={handleAction}
+                isDisabled={!isValidDate}
+              >
+                {isValidDate ? "Reserve" : "I am waiting!"}
               </Button>
             </ModalFooter>
           </>

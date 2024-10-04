@@ -23,7 +23,15 @@ export const isModalOpenState = atom<boolean>({
   default: false,
 });
 
+export const isCustomModalOpenState = atom<boolean>({
+  key: "isCustomModalOpenState",
+  default: false,
+});
+
+
 export const selectedDateTimeState = atom<string | null>({
   key: "selectedDateTimeState",
   default: null,
 });
+
+

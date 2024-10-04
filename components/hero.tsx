@@ -21,7 +21,7 @@ export default function Home() {
   const shimmerButnState = useRecoilValue(buttonClickedState);
 
   //   logs
-  console.log("shimmerButnState", shimmerButnState);
+  // console.log("shimmerButnState", shimmerButnState);
 
   useEffect(() => {
     const timers = [
@@ -66,7 +66,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            Would you join me for one of those moments?
+            {shimmerButnState ? "Pick a place where our story starts" : "Would you join me for one of those moments?"}
           </motion.div>
         )}
       </div>
