@@ -25,9 +25,9 @@ export default function Home() {
 
   useEffect(() => {
     const timers = [
-      { state: setShowWordz, delay: 1000 },
-      { state: setShowSubtitle, delay: 1500 },
-      { state: setShowButton, delay: 2000 },
+      { state: setShowWordz, delay: 10000 },
+      { state: setShowSubtitle, delay: 15000 },
+      { state: setShowButton, delay: 20000 },
     ];
 
     const timeoutIds = timers.map(({ state, delay }) =>
@@ -71,7 +71,7 @@ export default function Home() {
         )}
       </div>
       <Confettie />
-      {showButton && <ShimmerButton>Yes!!</ShimmerButton>}
+      {showButton && !shimmerButnState && <ShimmerButton>Yes!!</ShimmerButton>}
       {shimmerButnState && (
         <div className="mt-8">
           <Cards />

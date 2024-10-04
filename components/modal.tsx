@@ -49,9 +49,14 @@ export default function App() {
   };
 
   const handleAction = async () => {
+    if (!selectedCard || !date) {
+      console.error("Selected card or date is missing");
+      return;
+    }
+  
     const formattedDate = formatDate(date.toDate());
     setSelectedDateTime(formattedDate);
-
+  
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
@@ -63,7 +68,7 @@ export default function App() {
           selectedDateTime: formattedDate,
         }),
       });
-
+  
       if (response.ok) {
         console.log("Email sent successfully");
       } else {
@@ -72,9 +77,10 @@ export default function App() {
     } catch (error) {
       console.error("Error sending email:", error);
     }
-
+  
     onClose();
   };
+  
 
   console.log("selectedDateTime", selectedDateTime);
 
@@ -109,6 +115,7 @@ export default function App() {
                   variant="bordered"
                   hideTimeZone
                   showMonthAndYearPickers
+                  onChange={(selected) => setDate(selected)} // This will update the date state
                   defaultValue={now(getLocalTimeZone())}
                 />
               </div>
