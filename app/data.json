@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Chai Galli",
+    "type": "Cafe",
+    "location": "Besant Nagar",
+    "imageUrl": "https://b.zmtcdn.com/data/pictures/2/18543762/2bdddf9e1df000fa6625dea977fe24b7.jpg",
+    "mapUrl": "https://www.google.com/maps?sca_esv=53831945a2741967&rlz=1C5GCCM_en&biw=1440&bih=812&sxsrf=ADLYWIKlCjDdMRm07jTMUTwfb3trKSSyxg:1727986500876&gs_lp=Egxnd3Mtd2l6LXNlcnAiDWNoYWkgZ2FsbGkgYmUqAggAMgsQLhiABBjHARivATIHEAAYgAQYCjIFEAAYgAQyDRAuGIAEGMcBGAoYrwEyBRAAGIAEMgUQABiABDICECYyCxAAGIAEGIYDGIoFMgsQABiABBiGAxiKBTILEAAYgAQYhgMYigUyGhAuGIAEGMcBGK8BGJcFGNwEGN4EGOAE2AEBSNsOUMUFWNwHcAF4AZABAJgBvAGgAf0DqgEDMC4zuAEDyAEA-AEBmAIEoAKdBMICDRAAGLADGNYEGEcYyQPCAgoQABiwAxjWBBhHwgIQEAAYgAQYsAMYkgMYQxiKBcICDhAAGIAEGLADGJIDGIoFwgIPEAAYgAQYsAMYQxiKBRgKwgINEAAYgAQYsAMYQxiKBcICHBAuGIAEGLADGEMYxwEYyAMYigUYjgUYrwHYAQHCAhkQLhiABBiwAxhDGMcBGMgDGIoFGK8B2AEBwgITEC4YgAQYQxjHARiKBRiOBRivAcICChAAGIAEGEMYigXCAg4QLhiABBiSAxjHARivAcICDRAAGIAEGEMYyQMYigXCAhAQLhiABBhDGMcBGIoFGK8BwgIiEC4YgAQYQxjHARiKBRiOBRivARiXBRjcBBjeBBjgBNgBAcICBhAAGBYYHsICCBAAGBYYChgemAMAiAYBkAYTugYGCAEQARgIkgcDMS4zoAfWJw&um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=Kelt0s_7Z1I6MccJrI3noLFL&daddr=2729%2B9P5,+GOCHS+Colony,+Besant+Nagar,+Chennai,+Tamil+Nadu+600090"
+  },
+  {
+    "id": 2,
+    "name": "Writers Cafe",
+    "type": "Cafe",
+    "location": "Adayar",
+    "imageUrl": "https://www.mappls.com/place/NULSSU_1684248901488_0.jpeg",
+    "mapUrl": "https://www.google.com/maps/dir//49,+22,+3rd+Main+Rd,+Kasturba+Nagar,+Adyar,+Chennai,+Tamil+Nadu+600020/@13.0050047,80.1687998,30204m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x3a5267a646233445:0x8f6466c4fc7ff0a7!2m2!1d80.2512017!2d13.0050177!5m1!1e1?entry=ttu&g_ep=EgoyMDI0MTAwMS4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": 3,
+    "name": "The Old Potion House",
+    "type": "Cafe",
+    "location": "Adayar",
+    "imageUrl": "https://b.zmtcdn.com/data/pictures/7/20667667/50272488eab28cd17683e73ce6514a61.jpg",
+    "mapUrl": "https://www.google.com/maps?rlz=1C5GCCM_en&gs_lcrp=EgZjaHJvbWUqCggAEAAY4wIYgAQyCggAEAAY4wIYgAQyDQgBEC4YrwEYxwEYgAQyBwgCEAAYgAQyBwgDEAAYgAQyDQgEEAAYhgMYgAQYigUyDQgFEAAYhgMYgAQYigUyCggGEAAYgAQYogQyCggHEAAYgAQYogQyCggIEAAYgAQYogQyCggJEAAYgAQYogTSAQg2NjA3ajBqNKgCALACAA&um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=KTX-ykK2Z1I6MT06XYcVRi8D&daddr=3,+1st+Ave,+Shastri+Nagar,+Adyar,+Chennai,+Tamil+Nadu+600020"
+  },
+  {
+    "id": 4,
+    "name": "Atte - Glocal Cafe",
+    "type": "Cafe",
+    "location": "Besant Nagar",
+    "imageUrl": "https://b.zmtcdn.com/data/pictures/6/18600216/004aab8beb4b7acc17ec69e7a68fcf26.jpeg",
+    "mapUrl": "https://www.google.com/maps?rlz=1C5GCCM_en&gs_lcrp=EgZjaHJvbWUqCggAEAAY4wIYgAQyCggAEAAY4wIYgAQyDQgBEC4YrwEYxwEYgAQyBwgCEAAYgAQyBwgDEAAYgAQyDQgEEAAYhgMYgAQYigUyDQgFEAAYhgMYgAQYigUyCggGEAAYgAQYogQyCggHEAAYgAQYogQyCggIEAAYgAQYogQyCggJEAAYgAQYogTSAQg2NjA3ajBqNKgCALACAA&um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=KTX-ykK2Z1I6MT06XYcVRi8D&daddr=3,+1st+Ave,+Shastri+Nagar,+Adyar,+Chennai,+Tamil+Nadu+600020https://www.google.com/maps/dir//M-8+1%2F4,+4th+Main+Rd,+R+Block,+Besant+Nagar,+Chennai,+Tamil+Nadu+600090/@13.0007933,80.188185,30204m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x3a5267fb67b1f09b:0xfa976d39dff19f59!2m2!1d80.2705869!2d13.0008063!5m1!1e1?entry=ttu&g_ep=EgoyMDI0MTAwMS4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": 5,
+    "name": "Starbucks",
+    "type": "Cafe",
+    "location": "Adayar",
+    "imageUrl": "https://wallpapercave.com/wp/k9MlKjI.jpg",
+    "mapUrl": "https://www.google.com/maps?rlz=1C5GCCM_en&sca_esv=7e370cf0159e2ba3&lqi=Cg9zdGFyYnVja3MgYWR5YXIiA4gBAUj6m6GQz7iAgAhaHRAAGAAYASIPc3RhcmJ1Y2tzIGFkeWFyKgQIAhAAkgELY29mZmVlX3Nob3CqAUYQASoNIglzdGFyYnVja3MoADIeEAEiGodxR43_JcQPNpSq38cAwF6Ns935HsOIWBFfMhMQAiIPc3RhcmJ1Y2tzIGFkeWFy&vet=12ahUKEwjclP7agPOIAxXkR2wGHd-cHz8Q8UF6BAgGEBM..i&lei=gfj-ZpzQBOSPseMP37n--AM&cs=1&um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=KX9UWa4NZ1I6MfY36GosMGiJ&daddr=Kamaraj+Ave+1st+St,+Venkata+Rathnam+Nagar+Extension,+Venkata+Rathinam+Nagar,+Adyar,+Chennai,+Tamil+Nadu+600020"
+  },
+  {
+    "id": 6,
+    "name": "Tea Square",
+    "type": "Cafe",
+    "location": "Adayar",
+    "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipNm3DfWTyPQvvfeJyRZHg1Jyg47jVCULQg1brrm=s1360-w1360-h1020",
+    "mapUrl": "https://www.google.com/maps/dir//Tea+Square,+Lattice+Bridge+Road,+Baktavatsalm+Nagar,+Adyar,+Chennai,+Tamil+Nadu/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3a5267070a59f801:0xad027a85b7a756fb?sa=X&ved=1t:3061&ictx=111"
+  }
+]
