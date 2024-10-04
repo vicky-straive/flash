@@ -56,7 +56,7 @@ export default function RootLayout({
               >
                 {/* <span className="text-default-600">Powered by</span>
                 <p className="text-primary">NextUI</p> */}
-              <p>Coffee's better when shared with some special!</p>
+                <p>Coffee&apos;s better when shared with some special!</p>
               </Link>
             </footer>
           </div>
