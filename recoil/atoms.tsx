@@ -37,3 +37,8 @@ export const selectedDateTimeState = atom<string | null>({
   key: "selectedDateTimeState",
   default: null,
 });
+
+export const favouriteSpot = atom<boolean>({
+  key: "isFavouriteSpot",
+  default: false,
+});

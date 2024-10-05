@@ -10,8 +10,8 @@ import Confettie from "@/components/ui/confetti";
 import Cards from "../components/card";
 import { CoolModeDemo } from "../components/coolMode";
 
-import { useSetRecoilState, useRecoilValue } from "recoil";
-import { buttonClickedState, dateCancel } from "../recoil/atoms";
+import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
+import { buttonClickedState, dateCancel, favouriteSpot } from "../recoil/atoms";
 
 import "primeicons/primeicons.css";
 import { Button } from "@nextui-org/button";
@@ -25,6 +25,7 @@ export default function Home() {
   const [showCoolMode, setShowCoolMode] = useState(false);
   const shimmerButnState = useRecoilValue(buttonClickedState);
   const cancel = useRecoilValue(dateCancel);
+  const setSpot = useSetRecoilState(favouriteSpot);
 
   // logs
   // console.log("shimmerButnState", shimmerButnState);
@@ -90,15 +91,21 @@ export default function Home() {
         <ShimmerButton>YES!!</ShimmerButton>
       )}
       {shimmerButnState && !cancel && (
-        <div className="mx-8">
+        <div className="mt-8">
           <Cards />
-          <div className="flex justify-center mt-5 mb-5">
-            <Button color="warning" endContent={<Coffee />}>
-              Let me know you favourite spot
+          <div className="flex justify-center">
+            <Button
+              color="warning"
+              endContent={<Coffee />}
+              style={{ marginTop: "30px", marginBottom: "30px" }}
+              onClick={() => setSpot(true)}
+            >
+              Let me know your favourite spot
             </Button>
           </div>
         </div>
       )}
+      {showCoolMode && !cancel && !shimmerButnState && <CoolModeDemo />}
     </section>
   );
 }
