@@ -8,19 +8,22 @@ import SparklesText from "@/components/ui/sparkles-text";
 import ShimmerButton from "@/components/ui/shimmer-button";
 import Confettie from "@/components/ui/confetti";
 import Cards from "../components/card";
+import { CoolModeDemo } from "../components/coolMode";
 
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import { buttonClickedState } from "../recoil/atoms";
 
 import "primeicons/primeicons.css";
+import { Button } from "@nextui-org/button";
 
 export default function Home() {
   const [showSubtitle, setShowSubtitle] = useState(false);
   const [showWordz, setShowWordz] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [showCoolMode, setShowCoolMode] = useState(false);
   const shimmerButnState = useRecoilValue(buttonClickedState);
 
-  //   logs
+  // logs
   // console.log("shimmerButnState", shimmerButnState);
 
   useEffect(() => {
@@ -28,6 +31,7 @@ export default function Home() {
       { state: setShowWordz, delay: 10000 },
       { state: setShowSubtitle, delay: 15000 },
       { state: setShowButton, delay: 20000 },
+      { state: setShowCoolMode, delay: 25000 },
     ];
 
     const timeoutIds = timers.map(({ state, delay }) =>
@@ -66,17 +70,20 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            {shimmerButnState ? "Pick a place where our story starts" : "Would you join me for one of those moments?"}
+            {shimmerButnState
+              ? "Pick a place where our story starts"
+              : "Would you join me for one of those moments?"}
           </motion.div>
         )}
       </div>
       <Confettie />
-      {showButton && !shimmerButnState && <ShimmerButton>Yes!!</ShimmerButton>}
+      {showButton && !shimmerButnState && <ShimmerButton>YES!!</ShimmerButton>}
       {shimmerButnState && (
         <div className="mt-8">
           <Cards />
         </div>
       )}
+      {showCoolMode && <CoolModeDemo />}
     </section>
   );
 }
