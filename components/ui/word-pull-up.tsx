@@ -54,38 +54,36 @@ export default function WordPullUp({
           className
         )}
       >
-        {words.split(" ").map((word, i) => (
-          <motion.span
-            key={i}
-            variants={framerProps}
-            style={{ display: "inline-block", paddingRight: "8px" }}
-          >
-            {word === "" ? <span>&nbsp;</span> : word}
-          </motion.span>
-        ))}
-        <br />
-      </motion.h1>
-      {/* {showWordz && (
-        <>
-          <motion.h1>
-            <br />
+        <div>
+          <div>
             {wordz.split(" ").map((word, i) => (
               <motion.span
-                key={i}
+                key={`wordz-${i}`}
+                variants={framerProps}
+                className="mb-7"
+                style={{ display: "inline-block", paddingRight: "8px" }}
+              >
+                <span className="">{word}</span>
+              </motion.span>
+            ))}
+          </div>
+          <div>
+            {words.split(" ").map((word, i) => (
+              <motion.span
+                key={`words-${i}`}
                 variants={framerProps}
                 style={{ display: "inline-block", paddingRight: "8px" }}
-                className={title({ color: "violet" })}
               >
-                {word === "" ? (
-                  <span className={title({ color: "violet" })}>&nbsp;</span>
+                {word && wordz === "" ? (
+                  <span>&nbsp;</span>
                 ) : (
-                  word
+                  <span>{word}</span>
                 )}
               </motion.span>
             ))}
-          </motion.h1>
-        </>
-      )} */}
+          </div>
+        </div>
+      </motion.h1>
     </>
   );
 }

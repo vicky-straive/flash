@@ -11,10 +11,12 @@ import Cards from "../components/card";
 import { CoolModeDemo } from "../components/coolMode";
 
 import { useSetRecoilState, useRecoilValue } from "recoil";
-import { buttonClickedState } from "../recoil/atoms";
+import { buttonClickedState, dateCancel } from "../recoil/atoms";
 
 import "primeicons/primeicons.css";
 import { Button } from "@nextui-org/button";
+import { CameraIcon, LightningBoltIcon } from "@radix-ui/react-icons";
+import { Coffee } from "lucide-react";
 
 export default function Home() {
   const [showSubtitle, setShowSubtitle] = useState(false);
@@ -22,6 +24,7 @@ export default function Home() {
   const [showButton, setShowButton] = useState(false);
   const [showCoolMode, setShowCoolMode] = useState(false);
   const shimmerButnState = useRecoilValue(buttonClickedState);
+  const cancel = useRecoilValue(dateCancel);
 
   // logs
   // console.log("shimmerButnState", shimmerButnState);
@@ -46,7 +49,7 @@ export default function Home() {
       <div className="inline-block max-w-l text-center justify-center">
         <WordPullUp
           words="In the midst of life's chaos, there's a moment waiting to be shared over a cup of coffee—where words may be few,"
-          wordz="but connections can last a lifetime."
+          wordz="Hey Vishnu Priya!"
         />
       </div>
       <div className="inline-block max-w-l text-center justify-center gap-4 py-8 md:py-7">
@@ -58,12 +61,18 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             // style={{ marginTop: "15px" }}
           >
-            <SparklesText text="but connections can last a lifetime." />
+            <SparklesText
+              text={
+                cancel
+                  ? "every wait has its worth, I can wait!"
+                  : "but connections can last a lifetime."
+              }
+            />
           </motion.div>
         )}
       </div>
       <div className="inline-block max-w-l text-center justify-center">
-        {showSubtitle && (
+        {showSubtitle && !cancel && (
           <motion.div
             className={subtitle({ class: "mt-4" })}
             initial={{ opacity: 0 }}
@@ -76,14 +85,20 @@ export default function Home() {
           </motion.div>
         )}
       </div>
-      <Confettie />
-      {showButton && !shimmerButnState && <ShimmerButton>YES!!</ShimmerButton>}
-      {shimmerButnState && (
-        <div className="mt-8">
+      {!cancel && <Confettie />}
+      {showButton && !shimmerButnState && !cancel && (
+        <ShimmerButton>YES!!</ShimmerButton>
+      )}
+      {shimmerButnState && !cancel && (
+        <div className="mx-8">
           <Cards />
+          <div className="flex justify-center mt-5 mb-5">
+            <Button color="warning" endContent={<Coffee />}>
+              Let me know you favourite spot
+            </Button>
+          </div>
         </div>
       )}
-      {showCoolMode && <CoolModeDemo />}
     </section>
   );
 }

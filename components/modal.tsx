@@ -69,7 +69,7 @@ export default function App() {
 
     return () => clearInterval(intervalId);
   }, [date]);
-  
+
   const onClose = () => setIsOpen(false);
   const formatDate = (date: Date) => {
     const pad = (num: number) => num.toString().padStart(2, "0");
@@ -117,7 +117,12 @@ export default function App() {
   };
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={onClose} placement="auto">
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={onClose}
+      backdrop="blur"
+      placement="auto"
+    >
       <ModalContent>
         {(onClose) => (
           <>
@@ -148,8 +153,8 @@ export default function App() {
               <Button color="danger" variant="light" onPress={onClose}>
                 Close
               </Button>
-              <Button 
-                color="primary" 
+              <Button
+                color="primary"
                 onPress={handleAction}
                 isDisabled={!isValidDate}
               >
