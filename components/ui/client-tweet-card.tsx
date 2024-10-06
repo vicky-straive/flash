@@ -1,25 +1,24 @@
 "use client";
 
 import { TweetProps, useTweet } from "react-tweet";
-
 import {
   MagicTweet,
   TweetNotFound,
   TweetSkeleton,
 } from "@/components/ui/tweetCard";
 
-const ClientTweetCard = ({
+const ClientTweetCard: React.FC<TweetProps & { className?: string }> = ({
   id,
   apiUrl,
-  fallback = <TweetSkeleton />,
+  fallback = <TweetSkeleton />, // Ensure fallback is a JSX element
   components,
   fetchOptions,
   onError,
   ...props
-}: TweetProps & { className?: string }) => {
+}) => {
   const { data, error, isLoading } = useTweet(id, apiUrl, fetchOptions);
 
-  if (isLoading) return fallback;
+  if (isLoading) return <>{fallback}</>; // Render fallback as JSX
   if (error || !data) {
     const NotFound = components?.TweetNotFound || TweetNotFound;
     return <NotFound error={onError ? onError(error) : error} />;
