@@ -9,13 +9,18 @@ import ShimmerButton from "@/components/ui/shimmer-button";
 import Confettie from "@/components/ui/confetti";
 import Cards from "../components/card";
 import { CoolModeDemo } from "../components/coolMode";
-
-import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
-import { buttonClickedState, dateCancel, favouriteSpot } from "../recoil/atoms";
+import AddSpotModal from "./modals/addSpotModal";
+import SpotAddModal from "./modals/spotAddModal";
+import ReachModal from "./modals/reachMeModal";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import {
+  buttonClickedState,
+  dateCancel,
+  isSpotModalOpenState,
+} from "../recoil/atoms";
 
 import "primeicons/primeicons.css";
 import { Button } from "@nextui-org/button";
-import { CameraIcon, LightningBoltIcon } from "@radix-ui/react-icons";
 import { Coffee } from "lucide-react";
 
 export default function Home() {
@@ -25,10 +30,11 @@ export default function Home() {
   const [showCoolMode, setShowCoolMode] = useState(false);
   const shimmerButnState = useRecoilValue(buttonClickedState);
   const cancel = useRecoilValue(dateCancel);
-  const setSpot = useSetRecoilState(favouriteSpot);
+  const setSpot = useSetRecoilState(isSpotModalOpenState);
+  const spot = useRecoilValue(isSpotModalOpenState);
 
   // logs
-  // console.log("shimmerButnState", shimmerButnState);
+  console.log("spot", spot);
 
   useEffect(() => {
     const timers = [
@@ -102,6 +108,9 @@ export default function Home() {
             >
               Let me know your favourite spot
             </Button>
+            <AddSpotModal />
+            <SpotAddModal />
+            <ReachModal />
           </div>
         </div>
       )}

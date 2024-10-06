@@ -10,7 +10,7 @@ import {
   isModalOpenState,
   selectedCardState,
   selectedDateTimeState,
-} from "../recoil/atoms";
+} from "../../recoil/atoms";
 import {
   Modal,
   ModalContent,
@@ -24,7 +24,7 @@ import {
 import { DatePicker } from "@nextui-org/react";
 import { now, getLocalTimeZone } from "@internationalized/date";
 
-import { db } from "../firebaseConfig";
+import { db } from "../../firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 
 interface Card {
@@ -37,7 +37,7 @@ interface Card {
 const saveDataToFirebase = async (data: any) => {
   try {
     const docRef = await addDoc(collection(db, "bookings"), data);
-    console.log("Document successfully written with ID:", docRef.id);
+    // console.log("Document successfully written with ID:", docRef.id);
     return docRef.id;
   } catch (error) {
     console.error("Error adding document to Firestore:", error);

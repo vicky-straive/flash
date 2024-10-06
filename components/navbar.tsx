@@ -57,7 +57,7 @@ export const Navbar = () => {
             {/* <p className="font-bold text-inherit">FLASH</p> */}
           </NextLink>
         </NavbarBrand>
-        {/* <ul className="hidden lg:flex gap-4 justify-start ml-2">
+        <ul className="hidden lg:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <NextLink
@@ -72,7 +72,7 @@ export const Navbar = () => {
               </NextLink>
             </NavbarItem>
           ))}
-        </ul> */}
+        </ul>
       </NavbarContent>
 
       <NavbarContent
@@ -93,7 +93,7 @@ export const Navbar = () => {
         </NavbarItem>
         {/* <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem> */}
         <NavbarItem className="hidden md:flex">
-          <Button
+          {/* <Button
             isExternal
             as={Link}
             className="text-sm font-normal text-default-600 bg-default-100"
@@ -102,7 +102,7 @@ export const Navbar = () => {
             variant="flat"
           >
             Sponsor
-          </Button>
+          </Button> */}
         </NavbarItem>
       </NavbarContent>
 

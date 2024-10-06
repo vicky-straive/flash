@@ -11,12 +11,10 @@ export function CoolModeDemo() {
   const [clickCount, setClickCount] = useState(0);
   const setCancel = useSetRecoilState(dateCancel);
   const cancel = useRecoilValue(dateCancel);
-  console.log("state", cancel);
 
   const handleClick = () => {
     setClickCount((prevCount) => {
       const newCount = prevCount + 1;
-      console.log("newC", newCount);
 
       if (newCount % 15 === 0) {
         let title, message;

@@ -18,8 +18,19 @@ export const selectedCardState = atom<Place | null>({
   key: "selectedCardState",
   default: null,
 });
+
 export const isModalOpenState = atom<boolean>({
   key: "isModalOpenState",
+  default: false,
+});
+
+export const isSpotModalOpenState = atom<boolean>({
+  key: "isSpotModalOpenState",
+  default: false,
+});
+
+export const isAddSpotOpenState = atom<boolean>({
+  key: "isAddSpotOpenState",
   default: false,
 });
 
@@ -33,12 +44,12 @@ export const isCustomModalOpenState = atom<boolean>({
   default: false,
 });
 
+export const reachMeModal = atom<boolean>({
+  key: "reachMeModal",
+  default: true,
+});
+
 export const selectedDateTimeState = atom<string | null>({
   key: "selectedDateTimeState",
   default: null,
-});
-
-export const favouriteSpot = atom<boolean>({
-  key: "isFavouriteSpot",
-  default: false,
 });

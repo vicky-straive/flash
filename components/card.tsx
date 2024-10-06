@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardBody, Image, Button, Slider } from "@nextui-org/react";
 import cardData from "../app/data.json";
-import Modal from "./modal";
+import Modal from "./modals/modal";
 
 import { useRecoilValue, useSetRecoilState, atom } from "recoil";
 import {
@@ -10,7 +10,7 @@ import {
   isCustomModalOpenState,
 } from "../recoil/atoms";
 
-import CustomModal from "./customModal";
+import CustomModal from "./modals/customModal";
 
 interface Place {
   id: string;

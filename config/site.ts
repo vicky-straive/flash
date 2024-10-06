@@ -1,15 +1,14 @@
 export type SiteConfig = typeof siteConfig;
-import Link from 'next/link';
-
+import Link from "next/link";
 
 export const siteConfig = {
-  name: "FLASH",
+  name: "Chapter 1",
   description: "A beautiful experience.",
   navItems: [
-    // {
-    //   label: "Home",
-    //   href: "/",
-    // },
+    {
+      label: "Home",
+      href: "/pages/reservations",
+    },
     // {
     //   label: "About",
     //   href: "/about",
@@ -17,8 +16,8 @@ export const siteConfig = {
   ],
   navMenuItems: [
     {
-      label: "Reservation",
-      to: "/reservation",
+      label: "Reservations",
+      href: "/pages/reservations",
     },
     // {
     //   label: "Dashboard",
