@@ -94,6 +94,7 @@ export default function App() {
         cardName: selectedCard.name,
         cardType: selectedCard.type,
         cardLocation: selectedCard.location,
+        cardImage: selectedCard.imageUrl,
         selectedDateTime: formattedDate,
       };
 

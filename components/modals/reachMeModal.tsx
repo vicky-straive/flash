@@ -58,7 +58,7 @@ export default function App() {
                   can’t fully capture. Whatever happens, always keep that
                   smile—it’s truly something special. 💖
                 </h1>
-                <h1 style={{ fontSize: "25px" }}>
+                <h1>
                   And if you feel like making this moment even more meaningful,
                   we can meet on our first day and let the conversation flow
                   from there. ☕

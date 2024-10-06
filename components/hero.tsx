@@ -17,7 +17,9 @@ import {
   buttonClickedState,
   dateCancel,
   isSpotModalOpenState,
+  musicStateAtom,
 } from "../recoil/atoms";
+import useSound from "use-sound";
 
 import "primeicons/primeicons.css";
 import { Button } from "@nextui-org/button";

@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -27,6 +29,9 @@ import {
 } from "@/components/icons";
 
 export const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const closeMenu = () => setIsMenuOpen(false);
+
   const searchInput = (
     <Input
       aria-label="Search"
@@ -49,7 +54,12 @@ export const Navbar = () => {
   );
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
+    <NextUINavbar
+      maxWidth="xl"
+      position="sticky"
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -127,8 +137,9 @@ export const Navbar = () => {
                       ? "danger"
                       : "foreground"
                 }
-                href="#"
+                href={item.href} // Use the href from the item
                 size="lg"
+                onClick={closeMenu}
               >
                 {item.label}
               </Link>

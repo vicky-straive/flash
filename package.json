@@ -46,7 +46,8 @@
 		"react-tweet": "^3.2.1",
 		"recoil": "^0.7.7",
 		"tailwind-merge": "^2.5.2",
-		"tailwindcss-animate": "^1.0.7"
+		"tailwindcss-animate": "^1.0.7",
+		"use-sound": "^4.0.3"
 	},
 	"devDependencies": {
 		"@types/node": "20.5.7",

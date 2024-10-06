@@ -53,3 +53,8 @@ export const selectedDateTimeState = atom<string | null>({
   key: "selectedDateTimeState",
   default: null,
 });
+
+export const musicStateAtom = atom({
+  key: "musicState",
+  default: "initial", // Can be 'initial', 'buttonClicked', or 'cancelled'
+});
