@@ -1,8 +1,11 @@
 import {
+  addHerOn,
   isCustomModalOpenState,
   selectedCardState,
   selectedDateTimeState,
 } from "@/recoil/atoms";
+import { useRouter } from "next/navigation";
+
 import {
   Modal,
   ModalContent,
@@ -20,7 +23,10 @@ export default function App() {
   const customModalOpen = useRecoilValue(isCustomModalOpenState);
   const setCustomModalOpen = useSetRecoilState(isCustomModalOpenState);
   const selectedCard = useRecoilValue(selectedCardState);
+  const setAddHerON = useSetRecoilState(addHerOn);
+
   const selectedDateTime = useRecoilValue(selectedDateTimeState);
+  const router = useRouter();
 
   const onClose = () => {
     setCustomModalOpen(false);
@@ -63,9 +69,15 @@ export default function App() {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                {/* <Button color="primary" onPress={onClose}>
-                  Action
-                </Button> */}
+                <Button
+                  color="primary"
+                  onPress={() => router.push("/pages/about-him")}
+                >
+                  View his info
+                </Button>
+                <Button color="primary" onPress={() => setAddHerON(true)}>
+                  Share My proifle
+                </Button>
               </ModalFooter>
             </>
           )}

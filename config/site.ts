@@ -20,6 +20,10 @@ export const siteConfig = {
       href: "/pages/reservations",
     },
     // {
+    //   label: "About him",
+    //   href: "/pages/about-him",
+    // },
+    // {
     //   label: "Dashboard",
     //   href: "/dashboard",
     // },
@@ -35,10 +39,7 @@ export const siteConfig = {
     //   label: "Calendar",
     //   href: "/calendar",
     // },
-    {
-      label: "Settings",
-      href: "/settings",
-    },
+
     // {
     //   label: "Help & Feedback",
     //   href: "/help-feedback",

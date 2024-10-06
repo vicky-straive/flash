@@ -34,6 +34,11 @@ export const isAddSpotOpenState = atom<boolean>({
   default: false,
 });
 
+export const addHerOn = atom<boolean>({
+  key: "addHerOn",
+  default: false,
+});
+
 export const dateCancel = atom<boolean>({
   key: "isMDateCancel",
   default: false,
@@ -46,7 +51,7 @@ export const isCustomModalOpenState = atom<boolean>({
 
 export const reachMeModal = atom<boolean>({
   key: "reachMeModal",
-  default: true,
+  default: false,
 });
 
 export const selectedDateTimeState = atom<string | null>({

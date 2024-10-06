@@ -1,4 +1,4 @@
-import { reachMeModal } from "@/recoil/atoms";
+import { reachMeModal, addHerOn } from "@/recoil/atoms";
 import {
   Modal,
   ModalContent,
@@ -11,12 +11,15 @@ import {
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import confetti from "canvas-confetti";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function App() {
   //   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const customModalOpen = useRecoilValue(reachMeModal);
   const setCustomModalOpen = useSetRecoilState(reachMeModal);
+  const setAddHerON = useSetRecoilState(addHerOn);
   const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
+  const router = useRouter();
 
   const onClose = () => {
     setCustomModalOpen(false);
@@ -78,12 +81,12 @@ export default function App() {
                 </Button>
                 <Button
                   color="primary"
-                  onPress={onClose}
                   isDisabled={!isScrolledToBottom}
+                  onPress={() => router.push("/pages/about-him")}
                 >
                   View his info
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                <Button color="primary" onPress={() => setAddHerON(true)}>
                   Share My proifle
                 </Button>
               </ModalFooter>

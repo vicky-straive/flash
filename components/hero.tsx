@@ -12,6 +12,7 @@ import { CoolModeDemo } from "../components/coolMode";
 import AddSpotModal from "./modals/addSpotModal";
 import SpotAddModal from "./modals/spotAddModal";
 import ReachModal from "./modals/reachMeModal";
+import AddHerInfo from "./modals/addHerInfo";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import {
   buttonClickedState,
@@ -113,6 +114,7 @@ export default function Home() {
             <AddSpotModal />
             <SpotAddModal />
             <ReachModal />
+            <AddHerInfo />
           </div>
         </div>
       )}
