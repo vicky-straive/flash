@@ -75,7 +75,7 @@ export function CoolModeDemo() {
               "https://cdn-icons-png.freepik.com/256/6023/6023126.png?semt=ais_hybrid",
           }}
         >
-          <ShimmerButton>No 🫤</ShimmerButton>
+          <ShimmerButton>No 👠</ShimmerButton>
         </CoolMode>
       </div>
     </div>
