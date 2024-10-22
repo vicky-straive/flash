@@ -60,6 +60,7 @@ export default function Home() {
         <WordPullUp
           words="In the midst of life's chaos, there's a moment waiting to be shared over a cup of coffee—where words may be few,"
           wordz="Hey Vishnu Priya!"
+          wordi="Chapter 1"
         />
       </div>
       <div className="inline-block max-w-l text-center justify-center gap-4 py-8 md:py-7">

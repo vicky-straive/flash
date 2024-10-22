@@ -5,12 +5,28 @@ import ShimmerButton from "./ui/shimmer-no";
 import { CoolMode } from "./ui/cool-mode";
 import { dateCancel } from "@/recoil/atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebaseConfig";
 
 export function CoolModeDemo() {
   const { toast } = useToast();
   const [clickCount, setClickCount] = useState(0);
   const setCancel = useSetRecoilState(dateCancel);
   const cancel = useRecoilValue(dateCancel);
+
+  const cancelDate = async () => {
+    setCancel(true);
+
+    try {
+      await setDoc(doc(db, "PlanOff", "response"), {
+        response: "No",
+        timestamp: new Date(),
+      });
+      console.log("Response stored successfully!");
+    } catch (error) {
+      console.error("Error storing response: ", error);
+    }
+  };
 
   const handleClick = () => {
     setClickCount((prevCount) => {
@@ -53,7 +69,7 @@ export function CoolModeDemo() {
           duration: 5000,
           action:
             newCount >= 75 ? (
-              <ToastAction altText="Try again" onClick={() => setCancel(true)}>
+              <ToastAction altText="Try again" onClick={cancelDate}>
                 Still No?
               </ToastAction>
             ) : undefined,

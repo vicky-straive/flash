@@ -5,7 +5,6 @@ import confetti from "canvas-confetti";
 
 import { useSetRecoilState } from "recoil";
 import { buttonClickedState } from "../../recoil/atoms";
-
 export interface ShimmerButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   shimmerColor?: string;

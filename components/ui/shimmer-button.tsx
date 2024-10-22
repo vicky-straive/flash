@@ -1,10 +1,10 @@
 import React, { CSSProperties } from "react";
-
 import { cn } from "@/lib/utils";
 import confetti from "canvas-confetti";
-
 import { useSetRecoilState } from "recoil";
 import { buttonClickedState } from "../../recoil/atoms";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../firebaseConfig"; // Adjust the path as necessary
 
 export interface ShimmerButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -33,9 +33,19 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
   ) => {
     const setButtonClicked = useSetRecoilState(buttonClickedState);
 
-    const handleConfetti = () => {
+    const handleConfetti = async () => {
       confetti({});
       setButtonClicked(true);
+
+      try {
+        await setDoc(doc(db, "PlanOn", "response"), {
+          response: "Yes",
+          timestamp: new Date(),
+        });
+        console.log("Response stored successfully!");
+      } catch (error) {
+        console.error("Error storing response: ", error);
+      }
     };
 
     return (
@@ -78,15 +88,11 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
         <div
           className={cn(
             "insert-0 absolute size-full",
-
             "rounded-2xl px-4 py-1.5 text-sm font-medium shadow-[inset_0_-8px_10px_#ffffff1f]",
-
             // transition
             "transform-gpu transition-all duration-300 ease-in-out",
-
             // on hover
             "group-hover:shadow-[inset_0_-6px_10px_#ffffff3f]",
-
             // on click
             "group-active:shadow-[inset_0_-10px_10px_#ffffff3f]"
           )}

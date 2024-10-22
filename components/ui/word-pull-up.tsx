@@ -9,6 +9,7 @@ import { title } from "../primitives";
 interface WordPullUpProps {
   words: string;
   wordz: string;
+  wordi: string;
   delayMultiple?: number;
   wrapperFramerProps?: Variants;
   framerProps?: Variants;
@@ -18,6 +19,7 @@ interface WordPullUpProps {
 export default function WordPullUp({
   words,
   wordz,
+  wordi,
   wrapperFramerProps = {
     hidden: { opacity: 0 },
     show: {
@@ -34,11 +36,20 @@ export default function WordPullUp({
   className,
 }: WordPullUpProps) {
   const [showWordz, setShowWordz] = useState(false);
+  const [showWordi, setShowWordi] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowWordz(true);
     }, 10000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowWordi(false);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -55,6 +66,24 @@ export default function WordPullUp({
         )}
       >
         <div>
+          {showWordi && (
+            <motion.div
+              initial={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 0, y: 20 }}
+              transition={{ delay: 2, duration: 1, ease: "easeOut" }}
+            >
+              {wordi.split(" ").map((word, i) => (
+                <motion.span
+                  key={`wordi-${i}`}
+                  variants={framerProps}
+                  className="mb-7"
+                  style={{ display: "inline-block", paddingRight: "8px" }}
+                >
+                  <span className="">{word}</span>
+                </motion.span>
+              ))}
+            </motion.div>
+          )}
           <div>
             {wordz.split(" ").map((word, i) => (
               <motion.span

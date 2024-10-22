@@ -22,6 +22,7 @@ const Twitter = ({ className, ...props }: TwitterIconProps) => (
   </div>
 );
 
+const text = "Hi";
 const Verified = ({ className, ...props }: TwitterIconProps) => (
   <svg
     aria-label="Verified Account"
@@ -148,7 +149,21 @@ export const TweetBody = ({ tweet }: { tweet: EnrichedTweet }) => (
       switch (entity.type) {
         case "url":
         case "symbol":
+
         case "hashtag":
+          return (
+            <div>
+              <span
+                key={idx}
+                className="text-sm font-normal"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    "This app isn’t just a random thought—it’s something I poured time and effort into, line by line, with you in mind. 💻✨ Each detail was crafted with care, because I wanted this to be something truly unique, just like this moment we’re about to share. 😊 ",
+                }}
+              />
+            </div>
+          );
+
         case "mention":
           return (
             <a
@@ -158,20 +173,22 @@ export const TweetBody = ({ tweet }: { tweet: EnrichedTweet }) => (
               rel="noopener noreferrer"
               className="text-sm font-normal text-gray-500"
             >
-              {/* <span>{entity.text}</span> */}
+              <span>entity.text</span>
             </a>
           );
-        case "text":
-          return (
-            <span
-              key={idx}
-              className="text-sm font-normal"
-              dangerouslySetInnerHTML={{
-                __html:
-                  "This app isn’t just some quick idea—it took an insane amount of time and effort to bring it to life. Every detail, every line of code, was carefully crafted to make this moment special. ",
-              }}
-            />
-          );
+        // case "text":
+        //   return (
+        //     <div>
+        //       <span
+        //         key={idx}
+        //         className="text-sm font-normal"
+        //         dangerouslySetInnerHTML={{
+        //           __html:
+        //             "This app isn’t just a random thought—it’s something I poured time and effort into, line by line, with you in mind. 💻✨ Each detail was crafted with care, because I wanted this to be something truly unique, just like this moment we’re about to share. 😊 ",
+        //         }}
+        //       />
+        //     </div>
+        //   );
       }
     })}
   </div>
@@ -241,7 +258,7 @@ export const MagicTweet = ({
     >
       <TweetHeader tweet={enrichedTweet} />
       <TweetBody tweet={enrichedTweet} />
-      <TweetMedia tweet={enrichedTweet} />
+      {/* <TweetMedia tweet={enrichedTweet} /> */}
     </div>
   );
 };
