@@ -21,6 +21,8 @@ import {
   musicStateAtom,
 } from "../recoil/atoms";
 import useSound from "use-sound";
+import { doc, getDoc, setDoc, addDoc, collection } from "firebase/firestore";
+import { db } from "../firebaseConfig"; // Adjust the path as necessary
 
 import "primeicons/primeicons.css";
 import { Button } from "@nextui-org/button";
@@ -54,6 +56,34 @@ export default function Home() {
     return () => timeoutIds.forEach(clearTimeout);
   }, []);
 
+  useEffect(() => {
+    const formatDateTime = (date: Date) => {
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      const seconds = String(date.getSeconds()).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+      const year = date.getFullYear();
+
+      return `${hours}:${minutes}:${seconds} ${day}-${month}-${year}`;
+    };
+
+    const updateAppOpenCount = async () => {
+      const currentDateTime = formatDateTime(new Date());
+
+      try {
+        await addDoc(collection(db, "appMetrics"), {
+          timestamp: currentDateTime,
+        });
+        console.log("App open count recorded successfully!");
+      } catch (error) {
+        console.error("Error recording app open count: ", error);
+      }
+    };
+
+    updateAppOpenCount();
+  }, []);
+
   return (
     <section className="flex flex-col items-center justify-center gap-4 py- md:py-7">
       <div className="inline-block max-w-l text-center justify-center">
@@ -70,7 +100,6 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            // style={{ marginTop: "15px" }}
           >
             <SparklesText
               text={
