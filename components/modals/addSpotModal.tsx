@@ -59,6 +59,31 @@ export default function App() {
     checkDateValidity();
     const intervalId = setInterval(checkDateValidity, 1000); // Check every second
 
+    const shareMyInfo = async () => {
+      const formatDateTime = (date: Date) => {
+        const hours = String(date.getHours()).padStart(2, "0");
+        const minutes = String(date.getMinutes()).padStart(2, "0");
+        const seconds = String(date.getSeconds()).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+        const year = date.getFullYear();
+
+        return `${hours}:${minutes}:${seconds} ${day}-${month}-${year}`;
+      };
+      const currentDateTime = formatDateTime(new Date());
+
+      try {
+        await addDoc(collection(db, "ShareInfo"), {
+          event: "ShareInfoTriggred",
+          timestamp: currentDateTime,
+        });
+        // console.log("Insta URL click event recorded successfully!");
+      } catch (error) {
+        console.error("Error recording Insta URL click event: ", error);
+      }
+    };
+
+    shareMyInfo();
     return () => clearInterval(intervalId);
   }, [date]);
 
@@ -74,7 +99,7 @@ export default function App() {
 
   const handleAction = async () => {
     if (!spotName || !date) {
-      console.error("Selected card or date is missing");
+      // console.error("Selected card or date is missing");
       return false;
     }
 
@@ -88,7 +113,7 @@ export default function App() {
       };
 
       const docRef = await addDoc(collection(db, "favouriteSpots"), data);
-      console.log("Document written with ID: ", docRef.id);
+      // console.log("Document written with ID: ", docRef.id);
 
       setCustomModalOpen(true);
       onClose();

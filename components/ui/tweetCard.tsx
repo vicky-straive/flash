@@ -12,6 +12,8 @@ import { cn } from "@/lib/utils";
 import dispalyPicture from "../../public/image.png";
 import ista from "../../public/asset/instagram.png";
 
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../firebaseConfig";
 interface TwitterIconProps {
   className?: string;
   [key: string]: any;
@@ -90,9 +92,33 @@ export const TweetNotFound = ({
   </div>
 );
 
+const handleInstaClick = async () => {
+  const formatDateTime = (date: Date) => {
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const year = date.getFullYear();
+
+    return `${hours}:${minutes}:${seconds} ${day}-${month}-${year}`;
+  };
+  const currentDateTime = formatDateTime(new Date());
+
+  try {
+    await addDoc(collection(db, "clickMetrics"), {
+      event: "Insta URL clicked",
+      timestamp: currentDateTime,
+    });
+    // console.log("Insta URL click event recorded successfully!");
+  } catch (error) {
+    console.error("Error recording Insta URL click event: ", error);
+  }
+};
+
 export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
   <div className="flex flex-row justify-between tracking-tight">
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-2" onClick={handleInstaClick}>
       <a
         href="https://www.instagram.com/mr_viik/"
         target="_blank"

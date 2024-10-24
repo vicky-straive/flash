@@ -1,10 +1,15 @@
 import React, { CSSProperties } from "react";
 
 import { cn } from "@/lib/utils";
-import confetti from "canvas-confetti";
+// import confetti from "canvas-confetti";
 
 import { useSetRecoilState } from "recoil";
 import { buttonClickedState } from "../../recoil/atoms";
+
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../firebaseConfig";
+import { doc, setDoc, increment, getDoc } from "firebase/firestore";
+
 export interface ShimmerButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   shimmerColor?: string;
@@ -30,11 +35,35 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
     },
     ref
   ) => {
-    const setButtonClicked = useSetRecoilState(buttonClickedState);
+    // const setButtonClicked = useSetRecoilState(buttonClickedState);
 
-    const handleConfetti = () => {
-      // confetti({});
-      // setButtonClicked(true);
+    const handleConfetti = async () => {
+      const buttonDocRef = doc(db, "Button Clicks", "noButtonCounter");
+      const formatDateTime = (date: Date) => {
+        const hours = String(date.getHours()).padStart(2, "0");
+        const minutes = String(date.getMinutes()).padStart(2, "0");
+        const seconds = String(date.getSeconds()).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+        const year = date.getFullYear();
+
+        return `${hours}:${minutes}:${seconds} ${day}-${month}-${year}`;
+      };
+      const currentDateTime = formatDateTime(new Date());
+      try {
+        await setDoc(
+          buttonDocRef,
+          {
+            count: increment(1),
+            lastClicked: currentDateTime,
+          },
+          { merge: true }
+        );
+
+        // console.log("Button click counter updated successfully!");
+      } catch (error) {
+        console.error("Error updating click counter: ", error);
+      }
     };
 
     return (

@@ -39,7 +39,6 @@ export default function Home() {
   const spot = useRecoilValue(isSpotModalOpenState);
 
   // logs
-  console.log("spot", spot);
 
   useEffect(() => {
     const timers = [
@@ -72,10 +71,10 @@ export default function Home() {
       const currentDateTime = formatDateTime(new Date());
 
       try {
-        await addDoc(collection(db, "appMetrics"), {
+        await addDoc(collection(db, "appOpenMetrics"), {
           timestamp: currentDateTime,
         });
-        console.log("App open count recorded successfully!");
+        // console.log("App open count recorded successfully!");
       } catch (error) {
         console.error("Error recording app open count: ", error);
       }

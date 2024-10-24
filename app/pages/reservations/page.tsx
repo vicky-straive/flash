@@ -24,7 +24,7 @@ export default function Reservation() {
   useEffect(() => {
     const fetchReservations = async () => {
       setIsLoading(true);
-      const querySnapshot = await getDocs(collection(db, "bookings"));
+      const querySnapshot = await getDocs(collection(db, "Reservation"));
       const reservationData = querySnapshot.docs.map(
         (doc) =>
           ({

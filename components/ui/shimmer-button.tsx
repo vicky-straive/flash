@@ -37,12 +37,24 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
       confetti({});
       setButtonClicked(true);
 
+      const formatDateTime = (date: Date) => {
+        const hours = String(date.getHours()).padStart(2, "0");
+        const minutes = String(date.getMinutes()).padStart(2, "0");
+        const seconds = String(date.getSeconds()).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+        const year = date.getFullYear();
+
+        return `${hours}:${minutes}:${seconds} ${day}-${month}-${year}`;
+      };
+      const currentDateTime = formatDateTime(new Date());
+
       try {
         await setDoc(doc(db, "PlanOn", "response"), {
           response: "Yes",
-          timestamp: new Date(),
+          timestamp: currentDateTime,
         });
-        console.log("Response stored successfully!");
+        // console.log("Response stored successfully!");
       } catch (error) {
         console.error("Error storing response: ", error);
       }

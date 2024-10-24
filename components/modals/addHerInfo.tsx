@@ -45,8 +45,6 @@ export default function App() {
   const [date, setDate] = useState(now(getLocalTimeZone()));
   const [herInfo, setHerInfo] = useState("");
 
-  console.log("isOpen", isOpen);
-
   const onClose = () => setIsOpen(false);
   const formatDate = (date: Date) => {
     const pad = (num: number) => num.toString().padStart(2, "0");
@@ -59,7 +57,7 @@ export default function App() {
 
   const handleAction = async () => {
     if (!herInfo || !date) {
-      console.error("Selected card or date is missing");
+      // console.error("Selected card or date is missing");
       return false;
     }
 
@@ -72,7 +70,7 @@ export default function App() {
       };
 
       const docRef = await addDoc(collection(db, "herInfomation"), data);
-      console.log("Document written with ID: ", docRef.id);
+      // console.log("Document written with ID: ", docRef.id);
 
       onClose();
       return true;
