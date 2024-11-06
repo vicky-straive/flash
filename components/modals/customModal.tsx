@@ -69,12 +69,12 @@ export default function App() {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Button
+                {/* <Button
                   color="primary"
                   onPress={() => router.push("/pages/about-him")}
                 >
                   View his info
-                </Button>
+                </Button> */}
                 <Button color="primary" onPress={() => setAddHerON(true)}>
                   Share My proifle
                 </Button>
